@@ -106,6 +106,8 @@ static protected Token jjFillToken()
 static final int[] jjnextStates = {0
 };
 
+
+
 static int curLexState = 0;
 static int defaultLexState = 0;
 static int jjnewStateCnt;

@@ -1,0 +1,24 @@
+// a. Optional options section
+options {
+    BUILD_PARSER = false;
+}
+
+// b. Parse class definition
+PARSER_BEGIN(Hello)
+
+public class Hello {
+
+
+}
+PARSER_END(Hello)
+
+// c. Lexical specification
+TOKEN : {
+    <MEOW : "hello">
+}
+
+// d. Syntactic specification
+void MEOW():{}
+{
+    <MEOW>
+}
