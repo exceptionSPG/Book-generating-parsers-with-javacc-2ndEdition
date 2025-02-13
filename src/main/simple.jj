@@ -1,0 +1,39 @@
+// a. optional options section
+options {
+    STATIC = true;
+    JDK_VERSION = "1.8";
+}
+
+// b. Parse class definition
+PARSER_BEGIN(SimpleParser)
+
+import java.io.*;
+
+public class SimpleParser {
+	public static void main( String args[] ) throws ParseException{
+            String someInput = "a";
+            StringReader sr = new StringReader(someInput);
+			Reader r = new BufferedReader(sr);
+			SimpleParser parser = new SimpleParser(r);
+			parser.A();
+
+		}
+
+}
+
+PARSER_END(SimpleParser)
+
+// c. Lexical specification
+TOKEN :
+{
+    <A: "a">
+}
+
+// d. Syntactic specification
+
+void A() : {}
+{
+    <A> {System.out.println("Found an 'a' !");}
+}
+
+

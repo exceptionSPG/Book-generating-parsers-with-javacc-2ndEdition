@@ -1,0 +1,41 @@
+// a. optional options section
+options {
+    STATIC = true;
+    JDK_VERSION = "1.8";
+}
+
+// b. Parse class definition
+PARSER_BEGIN(ParseAtoZ)
+
+import java.io.*;
+
+public class ParseAtoZ {
+	public static void main( String args[] ) throws ParseException{
+            //String someInput = "c";
+            //StringReader sr = new StringReader(someInput);
+            StringReader sr = new java.io.StringReader(args[0]); // instead of hardcoding character, let's take from arguments
+			Reader r = new BufferedReader(sr);
+			ParseAtoZ parser = new ParseAtoZ(r);
+			parser.AtoZ();
+
+		}
+
+}
+
+
+PARSER_END(ParseAtoZ)
+
+// c. Lexical specification
+TOKEN :
+{
+    <A: ["a"-"z"]>
+}
+
+// d. Syntactic specification
+
+void AtoZ() : { Token t;}
+{
+    t = <A> {System.out.println("Found character:"+t.image+"!");}
+}
+
+

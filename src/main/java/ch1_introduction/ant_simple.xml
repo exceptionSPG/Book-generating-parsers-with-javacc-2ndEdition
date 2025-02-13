@@ -1,0 +1,10 @@
+<project name="simple" basedir=".">
+    <target name="runjavacc">
+        <taskdef name="javacc"
+            classname="org.apache.tools.ant.taskdefs.optional.javacc.JavaCC"/>
+        <javacc target="parse_a.jj"
+                outputdirectory="./parse_a_cc" javacchome="/Users/exceptionspg/Zone_new/software/javacc-target/" />
+        <javac srcdir="." destdir="."/>
+    </target>
+
+</project>
