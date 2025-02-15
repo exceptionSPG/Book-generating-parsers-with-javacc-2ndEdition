@@ -1,0 +1,31 @@
+// a. Optional Options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./ranged-character-alternation/";
+}
+// b. Parser class definition
+PARSER_BEGIN(RCAlterParser)
+
+import java.io.BufferedReader;import java.io.Reader;import java.io.StringReader;public class RCAlterParser {
+	public static void main(String args[]) throws ParseException {
+		    StringReader sr = new StringReader(args[0]);
+			Reader r = new BufferedReader(sr);
+			RCAlterParser rcp = new RCAlterParser(r);
+			rcp.RC_Alter();
+		}
+
+}
+PARSER_END(RCAlterParser)
+
+
+
+// c. Lexical definition
+TOKEN : {
+    <RC_Alter : ["a" - "z"] | ["0" - "9"]>
+}
+
+// d. Syntactic definition
+void RC_Alter() : {Token t;}
+{
+    t = <RC_Alter> {System.out.println("Found char: "+t.image);}
+}

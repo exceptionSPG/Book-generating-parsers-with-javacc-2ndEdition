@@ -1,0 +1,31 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./ranged-characters";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(RangedCharParser)
+
+import java.io.*;
+public class RangedCharParser {
+	public static void main(String args[]) throws ParseException{
+		    StringReader sr  = new StringReader(args[0]);
+			Reader r = new BufferedReader(sr);
+			RangedCharParser rcp = new RangedCharParser(r);
+			rcp.A_TO_Z();
+		}
+
+}
+PARSER_END(RangedCharParser)
+
+// c. lexical specification
+TOKEN : {
+    <A_TO_Z : ["a" - "z"]>
+}
+
+// d. syntactic specification
+void A_TO_Z() : {Token t;}
+{
+    t = <A_TO_Z> {System.out.println("Found character: "+ t.image);}
+}

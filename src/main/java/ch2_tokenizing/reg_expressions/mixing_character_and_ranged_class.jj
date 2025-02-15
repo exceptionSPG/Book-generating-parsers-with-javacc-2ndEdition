@@ -1,0 +1,31 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./mixing-character-and-ranged/";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(MixCharRangeParser)
+
+import java.io.*;
+public class MixCharRangeParser {
+    public static void main(String args[]) throws ParseException {
+            StringReader sr = new StringReader(args[0]);
+            Reader r = new BufferedReader(sr);
+            MixCharRangeParser mp = new MixCharRangeParser(r);
+            mp.MixCR();
+		}
+}
+PARSER_END(MixCharRangeParser)
+
+
+// c. Lexical specification
+TOKEN : {
+    <MixCR : ["a","b","s"-"z"]>
+}
+
+// d. Syntactic specification
+void MixCR() : {Token t;}
+{
+    t = <MixCR> {System.out.println("Found char: "+t.image);}
+}

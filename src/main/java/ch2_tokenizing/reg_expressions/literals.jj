@@ -1,0 +1,36 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./literals/";
+}
+
+
+// b. Parser class definition
+PARSER_BEGIN(LiteralsParser)
+import java.io.*;
+
+public class LiteralsParser {
+		public static void main( String args[] ) throws ParseException {
+            StringReader sr = new java.io.StringReader(args[0]); // instead of hardcoding character, let's take from arguments
+			Reader r = new BufferedReader(sr);
+			LiteralsParser parser = new LiteralsParser(r);
+			parser.HELLO();
+
+    	}
+}
+PARSER_END(LiteralsParser)
+
+
+
+
+// c. Lexical specification
+TOKEN : {
+    <HELLO : "hello">
+}
+
+// d. Syntactic specification
+void HELLO() : {Token t;}
+{
+    t = <HELLO> {System.out.print("Found token:" + t.image +"!" );}
+
+}

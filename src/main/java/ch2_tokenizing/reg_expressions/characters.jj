@@ -1,0 +1,32 @@
+// a. Optional Options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./characters";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(CharacterParse)
+
+import java.io.*;
+
+public class CharacterParse {
+	public static void main(String args[] ) throws ParseException {
+		StringReader r = new StringReader(args[0]);
+		Reader rr = new BufferedReader(r);
+		CharacterParse cp = new CharacterParse(rr);
+		cp.A_OR_B_OR_C();
+	}
+
+}
+PARSER_END(CharacterParse)
+
+// c. Lexical specification
+TOKEN : {
+    <A_OR_B_OR_C : ["a", "b", "c"]>
+}
+
+// d. Syntactic specification
+void A_OR_B_OR_C() : {Token t;}
+{
+    t = <A_OR_B_OR_C> {System.out.println("Found character: "+t.image);}
+}
