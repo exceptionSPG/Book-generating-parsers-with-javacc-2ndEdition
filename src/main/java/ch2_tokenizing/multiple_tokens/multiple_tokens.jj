@@ -1,0 +1,38 @@
+// a. Optional options 
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./multiple-tokens/";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(MultipleTokenParser)
+
+import java.io.*;
+public class MultipleTokenParser {
+	public static void main(String args[]) throws ParseException {
+		StringReader sr = new StringReader(args[0]);
+		Reader r = new BufferedReader(sr);
+		MultipleTokenParser multipleTokenParser = new MultipleTokenParser(r);
+		multipleTokenParser.MultiParse();
+	}
+
+}
+PARSER_END(MultipleTokenParser)
+
+
+
+// c. Lexical specification
+TOKEN : {
+    <MultiParse: "hello">
+    | <THERE: "there">
+    | <WORLD: "world">
+
+}
+
+// d. Syntactic specification
+void MultiParse(): {Token t;}
+{
+    t = <MultiParse> {System.out.println("Found token: "+t.image);}
+
+
+}

@@ -57,5 +57,13 @@ Here, we learned many aspects of tokenizing process. Some sub-topics, and files 
    
 
 3. Definining multiple tokens
-4. j
+   We can use alternation operator (|) to define multiple tokens. 
+   However, concern arises if there is more than one possible match. In such case, two rules applies. 
+   1. **Maximul munch rule** <br> This rule states JavaCC will consume the token that matches the largest amount of input data.
+      1. longest_match.jj
+      Here, we omitted main part inside parser class, but used  `TOKEN_MGR_DECLS` and build_parser to true (opposed to book, as keeping this false doesn't generate TokenManager file).
+      After that, run as `java longest-match/LongestMatchTokenManager.java "hello"`
+      
+   2. **First select rule**
+4. Redundant tokens
 5. 

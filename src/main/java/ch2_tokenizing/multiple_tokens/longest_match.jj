@@ -1,0 +1,31 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./longest-match/";
+}
+
+// b. Parser class definition
+
+PARSER_BEGIN(LongestMatch)
+
+import java.io.*;
+public class LongestMatch {}
+PARSER_END(LongestMatch)
+
+TOKEN_MGR_DECLS : {
+    public static void main(String[] args) {
+        StringReader sr = new StringReader(args[0]);
+        SimpleCharStream scs = new SimpleCharStream(sr);
+        LongestMatchTokenManager mgr = new LongestMatchTokenManager(scs);
+        for(Token t = mgr.getNextToken(); t.kind != EOF; t = mgr.getNextToken()){
+            debugStream.println("Found token: "+t.image + " (type "+(t.kind == HELLO ? "<HELLO>":"<LETTERS>")+")");
+        }
+    }
+}
+
+// c. Lexical specification
+TOKEN : {
+    <HELLO: "hello">
+    | <LETTERS: (["a"-"z"])+ >
+}
+
