@@ -66,4 +66,9 @@ Here, we learned many aspects of tokenizing process. Some sub-topics, and files 
       
    2. **First select rule**
 4. Redundant tokens
-5. 
+   Here, we learned about importance of ordering of tokens. 
+   1. never_match.jj 
+   2. first_match.jj
+
+5. Private Token definitions
+6. f

@@ -1,0 +1,22 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./first-match";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(FirstMatch)
+
+public class FirstMatch {
+}
+PARSER_END(FirstMatch)
+
+
+// c. Lexical specification
+TOKEN : {
+    <HELLO: "hello">
+    | <HELLO_MAYBE_WORLD: "hello" ("world")? >
+
+}
+
+// d. Syntactic specification

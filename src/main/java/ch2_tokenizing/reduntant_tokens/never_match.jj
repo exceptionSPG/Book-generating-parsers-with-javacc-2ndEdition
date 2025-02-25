@@ -1,0 +1,24 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./never-match";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(NeverMatch)
+
+public class NeverMatch {
+}
+PARSER_END(NeverMatch)
+
+
+// c. Lexical specification
+TOKEN : {
+    <HELLO_MAYBE_WORLD: "hello" ("world")? >
+    | <HELLO: "hello">
+}
+// Here, if we pass "hello" then it will be matched with HELLO_MAYBE_WORLD token, but never with
+// HELLO token, thus there HELLO_MAYBE_WORLD is masking the HELLO token.
+// to remove this, we can simply move HELLO token above HELLO_MAYBE_WORLD, so that in such case, javacc matches the first rule defined.
+
+// d. Syntactic specification
