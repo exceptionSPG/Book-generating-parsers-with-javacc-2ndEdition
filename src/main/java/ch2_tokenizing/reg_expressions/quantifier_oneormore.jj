@@ -1,0 +1,36 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./quantifier-oneormore/";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(QuantOneOrMoreParser)
+
+import java.io.*;
+public class QuantOneOrMoreParser {
+    public static void main(String args[]) throws ParseException {
+		StringReader sr = new StringReader(args[0]);
+		Reader r = new BufferedReader(sr);
+		QuantOneOrMoreParser onemoreParser = new QuantOneOrMoreParser(r);
+		//onemoreParser.OneOrMoreA();
+		onemoreParser.OneOrMoreA();
+	}
+}
+PARSER_END(QuantOneOrMoreParser)
+
+
+// c. Lexical specification
+TOKEN : {
+
+    < OneOrMoreA : ("a")+ >
+    //< AfollowedByAtoC : ("a" ["a"-"c"])+ >
+
+}
+// d. Syntactic specification
+void OneOrMoreA(): {Token t;}
+{
+    t = <OneOrMoreA> {System.out.println("Found token: "+t.image);}
+    //t = <AfollowedByAtoC> {System.out.println("Found token: "+t.image);}
+
+}

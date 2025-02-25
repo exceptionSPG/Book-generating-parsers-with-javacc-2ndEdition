@@ -1,0 +1,32 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./quantifier-zeroorone/";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(QuantZeroOrOneParser)
+
+import java.io.*;
+public class QuantZeroOrOneParser {
+    public static void main(String args[]) throws ParseException{
+		StringReader sr = new StringReader(args[0]);
+		Reader r = new BufferedReader(sr);
+		QuantZeroOrOneParser zeroOrOneParser = new QuantZeroOrOneParser(r);
+		zeroOrOneParser.SIGNED_DIGIT();
+	}
+}
+PARSER_END(QuantZeroOrOneParser)
+
+
+
+// c. Lexical specification
+TOKEN : {
+    <SIGNED_DIGIT: (["+","-"]) ? ["0"-"9"]>
+}
+
+// d. Syntactic specification
+void SIGNED_DIGIT(): {Token t;}
+{
+    t = <SIGNED_DIGIT> {System.out.println("Found token: "+t.image);}
+}

@@ -1,0 +1,32 @@
+// a. Optional options
+options {
+    OUTPUT_DIRECTORY = "./repetition-range/";
+    BUILD_PARSER = true;
+}
+
+// b. Parser class definition
+PARSER_BEGIN(TwoToFourAParser)
+
+import java.io.*;
+public class TwoToFourAParser {
+    public static void main(String args[]) throws ParseException {
+		StringReader sr = new StringReader(args[0]);
+		Reader r = new BufferedReader(sr);
+		TwoToFourAParser parser2to4A = new TwoToFourAParser(r);
+		parser2to4A.twoToFourA();
+	}
+}
+PARSER_END(TwoToFourAParser)
+
+
+
+// c. Lexical specification
+TOKEN : {
+    <twoToFourA : ("a"){2,4}>
+}
+// d. Syntactic specification
+void twoToFourA(): {Token t;}
+{
+    t = <twoToFourA> {System.out.println("Found token: "+t.image);}
+
+}

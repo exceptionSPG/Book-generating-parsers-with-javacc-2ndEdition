@@ -1,0 +1,34 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./repetition/";
+}
+
+
+// b. Parser class definition
+PARSER_BEGIN(ThreeAParser)
+
+import java.io.*;
+public class ThreeAParser {
+	public static void main(String args[]) throws ParseException{
+		StringReader sr = new StringReader(args[0]);
+		Reader r = new BufferedReader(sr);
+		ThreeAParser parse3A = new ThreeAParser(r);
+		parse3A.ThreeA();
+	}
+
+}
+PARSER_END(ThreeAParser)
+
+
+
+// c. Lexical specification
+TOKEN : {
+    <ThreeA : ("a"){3}>
+}
+
+// d. Syntactic specification
+void ThreeA() : {Token t;}
+{
+    t = <ThreeA> {System.out.println("Found: "+t.image+" .");}
+}

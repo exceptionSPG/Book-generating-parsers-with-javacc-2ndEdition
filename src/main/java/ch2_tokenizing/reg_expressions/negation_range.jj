@@ -1,0 +1,32 @@
+// a. Optional options
+options {
+    OUTPUT_DIRECTORY = "./negation-range/";
+    BUILD_PARSER = true;
+}
+
+// b. parser class definition
+PARSER_BEGIN(NegRangeParser)
+
+import java.io.*;
+public class NegRangeParser {
+	public static void main(String args[]) throws ParseException{
+        StringReader sr = new StringReader(args[0]);
+        Reader r = new BufferedReader(sr);
+        NegRangeParser rangeParser = new NegRangeParser(r);
+        rangeParser.ANYTHING_BUT_A_TO_C();
+	}
+
+}
+PARSER_END(NegRangeParser)
+
+
+
+// c. lexical specification
+TOKEN : {
+    <ANYTHING_BUT_A_TO_C : ~["a" - "c"]>
+}
+// d. syntactic specification
+void ANYTHING_BUT_A_TO_C() : {Token t;}
+{
+    t = <ANYTHING_BUT_A_TO_C> {System.out.println("Found char:"+t.image+".");}
+}

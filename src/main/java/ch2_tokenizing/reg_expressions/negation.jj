@@ -1,0 +1,35 @@
+// a. Optional options
+options {
+    OUTPUT_DIRECTORY = "./negation/";
+    BUILD_PARSER = true;
+}
+
+// b. Parser class
+PARSER_BEGIN(NegationParser)
+
+import java.io.*;
+
+public class NegationParser {
+	public static void main( String args[] ) throws ParseException {
+		    StringReader sr = new StringReader(args[0]);
+			Reader r = new BufferedReader(sr);
+			NegationParser parser = new NegationParser(r);
+			parser.ANYTHING_BUT_A();
+		}
+
+}
+PARSER_END(NegationParser)
+
+
+
+// c. Lexical specification
+TOKEN : {
+    <ANYTHING_BUT_A : ~["a"]>
+}
+
+// d. Syntactic specification
+
+void ANYTHING_BUT_A(): {Token t;}
+{
+    t = <ANYTHING_BUT_A> {System.out.println("Found char: "+ t.image + ".");}
+}
