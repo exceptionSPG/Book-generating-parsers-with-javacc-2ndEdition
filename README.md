@@ -71,4 +71,9 @@ Here, we learned many aspects of tokenizing process. Some sub-topics, and files 
    2. first_match.jj
 
 5. Private Token definitions
-6. f
+   private_regex.jj
+   
+6. SKIP regular expression production
+7. Single Line comments
+8. MORE regular expression production
+9. 
