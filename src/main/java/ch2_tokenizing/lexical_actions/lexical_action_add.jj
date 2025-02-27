@@ -1,0 +1,42 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./lexical-action-add/";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(LexActionAdd)
+
+import java.io.*;
+public class LexActionAdd {
+
+}
+PARSER_END(LexActionAdd)
+
+TOKEN_MGR_DECLS: {
+    // tracking the count of token
+    public static int count;
+    public static void main(String[] args){
+        StringReader rs = new StringReader(args[0]);
+        SimpleCharStream scs = new SimpleCharStream(rs);
+        LexActionAddTokenManager mgr = new LexActionAddTokenManager(scs);
+        while(mgr.getNextToken().kind != EOF ) {}
+        debugStream.println("Got "+count+" hellos.");
+    }
+}
+
+
+// c. Lexical specification
+SKIP : {
+    " "
+}
+
+TOKEN : {
+    <HELLO: "hello"> {count++;}
+    | <WORLD: "world">
+}
+
+
+// d. Syntactic specification
+
+

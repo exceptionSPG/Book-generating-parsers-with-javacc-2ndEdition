@@ -1,0 +1,32 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./lexical-action-transform/";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(LexActionTransform)
+
+import java.io.*;
+public class LexActionTransform {}
+PARSER_END(LexActionTransform)
+
+TOKEN_MGR_DECLS:{
+    public static void main(String[] args){
+        StringReader sr = new StringReader(args[0]);
+        SimpleCharStream scs = new SimpleCharStream(sr);
+        LexActionTransformTokenManager mgr = new LexActionTransformTokenManager(scs);
+        for(Token t = mgr.getNextToken(); t.kind != EOF; t = mgr.getNextToken()){
+            debugStream.println("Found token: "+t.image);
+        }
+    }
+}
+
+
+// c. Lexical specification
+TOKEN : {
+    <A: "A"> {matchedToken.image = image.append("B").toString();}
+}
+
+// d. syntactic specification
+

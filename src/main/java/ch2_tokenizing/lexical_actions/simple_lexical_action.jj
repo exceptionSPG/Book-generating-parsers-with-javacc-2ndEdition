@@ -1,0 +1,42 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./lexical-action-simple/";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(SimpleLexAction)
+
+import java.io.*;
+public class SimpleLexAction {
+
+}
+PARSER_END(SimpleLexAction)
+
+TOKEN_MGR_DECLS: {
+    public static void main(String[] args){
+        StringReader rs = new StringReader(args[0]);
+        SimpleCharStream scs = new SimpleCharStream(rs);
+        SimpleLexActionTokenManager mgr = new SimpleLexActionTokenManager(scs);
+        for(Token t = mgr.getNextToken(); t.kind != EOF; t = getNextToken()){
+            debugStream.println("Found token: "+t.image);
+        }
+    }
+}
+
+
+// c. Lexical specification
+SKIP : {
+    " "
+}
+
+TOKEN : {
+    <HELLO: "hello">
+        {debugStream.println("Got a HELLO Token" );}
+    | <WORLD: "world">
+        {debugStream.println("Got a WORLD Token");}
+}
+
+
+// d. Syntactic specification
+

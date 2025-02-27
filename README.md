@@ -95,7 +95,12 @@ Here, we learned many aspects of tokenizing process. Some sub-topics, and files 
 9. SPECIAL_TOKEN regular expression
    Like Token, SPECIAL_TOKEN creates a Token object, however the newly-created token is not directly added to the Token stream, instead it is assigned to a _specialToken_ on a next Token object that's created.
    1. special_a.jj
-10. f
-11. 
-9. 
-9. 
+10. Lexical Actions
+    We can perform many tasks such as tracking the count of a token occurrence, or modifying after a token is found matched, or even do some complex function inside lexical specification. Here are few examples:
+    1. simple_lexical_action.jj
+    2. lexical_action_add.jj
+    3. lexical_run_length_encoding.jj
+    
+11. Lexical States
+12. 
+
