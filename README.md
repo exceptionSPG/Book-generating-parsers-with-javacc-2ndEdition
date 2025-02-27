@@ -89,9 +89,12 @@ Here, we learned many aspects of tokenizing process. Some sub-topics, and files 
 
 
 8. MORE regular expression production
-   Used when we don't want to discard certain block of data but don't want to do anything with them either:
-   1. more_name.jj
+   Used when we don't want to discard certain block of data but don't want to do anything with them either.
+   MORE appends the characters it consumes to the next _Token_.
+      1. more_name.jj
 9. SPECIAL_TOKEN regular expression
+   Like Token, SPECIAL_TOKEN creates a Token object, however the newly-created token is not directly added to the Token stream, instead it is assigned to a _specialToken_ on a next Token object that's created.
+   1. special_a.jj
 10. f
 11. 
 9. 
