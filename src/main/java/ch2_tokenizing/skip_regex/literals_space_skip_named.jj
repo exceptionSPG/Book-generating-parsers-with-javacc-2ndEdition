@@ -1,0 +1,39 @@
+// a. Optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./space-skip-named/";
+}
+
+// b. Parser class definition
+
+PARSER_BEGIN(SkipSpace)
+import java.io.*;
+public class SkipSpace {
+
+}
+PARSER_END(SkipSpace)
+
+TOKEN_MGR_DECLS : {
+    public static void main(String[] args) {
+        StringReader sr = new StringReader(args[0]);
+        SimpleCharStream scs = new SimpleCharStream(sr);
+        SkipSpaceTokenManager mgr = new SkipSpaceTokenManager(scs);
+        for(Token t = mgr.getNextToken(); t.kind != EOF; t = mgr.getNextToken()){
+            debugStream.println("Found token: "+t.image);
+        }
+    }
+}
+
+// c. Lexical specification
+SKIP : {
+    <SPACE: " ">
+}
+TOKEN : {
+    <HELLO: "hello">
+}
+
+
+// d. Syntactic specification
+
+
+

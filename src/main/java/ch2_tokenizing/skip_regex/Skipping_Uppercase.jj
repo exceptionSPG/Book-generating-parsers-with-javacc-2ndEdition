@@ -1,0 +1,37 @@
+// a. Optional options
+options {
+    OUTPUT_DIRECTORY = "./skip-uppercase/";
+    BUILD_PARSER = true;
+}
+
+// b. Parser class definition
+PARSER_BEGIN(SkipUpperCase)
+
+import java.io.*;
+public class SkipUpperCase {
+
+}
+PARSER_END(SkipUpperCase)
+
+TOKEN_MGR_DECLS : {
+    public static void main(String[] args){
+        StringReader rs = new StringReader(args[0]);
+        SimpleCharStream scs = new SimpleCharStream(rs);
+        SkipUpperCaseTokenManager mgr = new SkipUpperCaseTokenManager(scs);
+        for(Token t = mgr.getNextToken(); t.kind != EOF; t = mgr.getNextToken()){
+            debugStream.println("Found token: "+t.image);
+        }
+    }
+}
+
+// c. Lexical specification
+SKIP : {
+    <NO_UPPER_CASE: ["A"-"Z"]>
+}
+
+TOKEN : {
+    <HELLO: "hello">
+}
+
+// d. Syntactic specification
+
