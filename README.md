@@ -74,6 +74,25 @@ Here, we learned many aspects of tokenizing process. Some sub-topics, and files 
    private_regex.jj
    
 6. SKIP regular expression production
+   Helps us skip some unwanted characters/tokens. Helpful in skipping comments, spaces, etc.
+   1. literals_space_token.jj 
+   2. literals_space_skip_named.jj 
+   3. space_skip.jj 
+   4. skip_greedy.jj 
+   5. Skipping_Uppercase.jj
+   
+
 7. Single Line comments
+   We define skip rule for a line starting with ^^
+   1. single_line_comment.jj
+   run by: `java single-line-comment/SingleLineCommentTokenManager.java "hello hello ^^ this is comment and will be skipped.\n hello"`
+
+
 8. MORE regular expression production
+   Used when we don't want to discard certain block of data but don't want to do anything with them either:
+   1. more_name.jj
+9. SPECIAL_TOKEN regular expression
+10. f
+11. 
+9. 
 9. 

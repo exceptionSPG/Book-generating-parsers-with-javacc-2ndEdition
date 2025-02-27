@@ -1,0 +1,36 @@
+// a. optional options
+options {
+    BUILD_PARSER = true;
+    OUTPUT_DIRECTORY = "./more-name/";
+}
+
+// b. Parser class definition
+PARSER_BEGIN(MoreName)
+
+import java.io.*;
+public class MoreName {
+
+}
+PARSER_END(MoreName)
+
+TOKEN_MGR_DECLS: {
+    public static void main(String[] args){
+        StringReader rs = new StringReader(args[0]);
+        SimpleCharStream scs = new SimpleCharStream(rs);
+        MoreNameTokenManager mgr = new MoreNameTokenManager(scs);
+        for(Token t = mgr.getNextToken(); t.kind != EOF; t = mgr.getNextToken()){
+            debugStream.println("Found token: "+t.image);
+        }
+    }
+}
+
+// c. Lexical specification
+MORE : {
+    <NAME: ["A"-"Z"] (["a"-"z"])+>
+}
+TOKEN : {
+    <DONE: " is my name">
+}
+
+// d. Syntactic specification
+
